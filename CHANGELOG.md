@@ -1,3 +1,7 @@
+## [1.0.2] - 26/05/2019.
+
+* Adding explicit types
+
 ## [1.0.2] - 24/05/2019.
 
 * Improving my dart score
