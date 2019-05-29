@@ -1,3 +1,7 @@
+## [1.0.4] - 29/05/2019.
+
+* Better handling of null types
+
 ## [1.0.3] - 26/05/2019.
 
 * Adding explicit types
