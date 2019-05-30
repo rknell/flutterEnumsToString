@@ -1,3 +1,7 @@
+## [1.0.7] - 30/05/2019.
+
+* Improving examples
+
 ## [1.0.6] - 30/05/2019.
 
 * Added support for getting an enum from a string

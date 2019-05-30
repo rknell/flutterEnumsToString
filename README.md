@@ -30,6 +30,9 @@ convert(){
 
     String resultCamelCase = EnumToString.parseCamelCase(TestEnum.testValue1);
     //result = 'Test Value 1'
+    
+    final result = EnumToString.fromString(TestEnum.values, "testValue1");
+    // TestEnum.testValue1
 }
 ```
 
