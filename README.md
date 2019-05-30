@@ -31,5 +31,6 @@ convert(){
     String resultCamelCase = EnumToString.parseCamelCase(TestEnum.testValue1);
     //result = 'Test Value 1'
 }
+```
 
 Any pull requests / extensions welcome, this was just an annoying thing I needed to fix a couple of times so viola! a package was born.
