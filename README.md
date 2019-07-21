@@ -1,6 +1,6 @@
 # enum_to_string
 
-Better convertsion of ENUMs to string
+Better conversion of ENUMs to string - It also can handle converting back again!
 
 ## What it does
 
