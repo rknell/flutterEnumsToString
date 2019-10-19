@@ -19,7 +19,7 @@ class EnumToString {
     if (value == null) return null;
 
     return enumValues.firstWhere(
-        (enumItem) => EnumToString.parse(enumItem) == value,
+        (enumItem) => EnumToString.parse(enumItem)?.toLowerCase() == value?.toLowerCase(),
         orElse: () => null);
   }
 }
