@@ -18,7 +18,7 @@ class EnumToString {
   static fromString<T>(List<T> enumValues, String value) {
     if (value == null) return null;
 
-    return enumValues.singleWhere(
+    return enumValues.firstWhere(
         (enumItem) => EnumToString.parse(enumItem) == value,
         orElse: () => null);
   }
