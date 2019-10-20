@@ -1,3 +1,7 @@
+## [1.0.7+1] - 21/10/2019.
+
+* Improving code robustness (Thanks @ewertonrp)
+
 ## [1.0.7] - 30/05/2019.
 
 * Improving examples
