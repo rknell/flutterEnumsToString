@@ -16,7 +16,7 @@ class EnumToString {
   }
 
   static fromString<T>(List<T> enumValues, String value) {
-    if (value == null) return null;
+    if (value == null || enumValues == null) return null;
 
     return enumValues.singleWhere(
         (enumItem) => EnumToString.parse(enumItem)?.toLowerCase() == value?.toLowerCase(),
