@@ -46,7 +46,7 @@ const String WORD = '(?:[' +
 
 String camelCaseToWords(String subject,
     [Pattern customPattern = defaultPattern]) {
-  if (subject is! String || subject.length == 0) {
+  if (subject is! String || subject.isEmpty) {
     return "";
   }
 
