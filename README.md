@@ -1,4 +1,5 @@
 # enum_to_string
+[![Build Status](https://travis-ci.org/rknell/flutterEnumsToString.svg?branch=master)](https://travis-ci.org/rknell/flutterEnumsToString)
 
 Better conversion of ENUMs to string - It also can handle converting back again!
 
