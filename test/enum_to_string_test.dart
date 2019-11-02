@@ -33,4 +33,13 @@ void main() {
             OtherEnumForTesting.values, "helloImAnEnumValue"),
         OtherEnumForTesting.helloImAnEnumValue);
   });
+
+  test('it should maintain typing', () {
+    final result = EnumToString.fromString<TestEnum>(
+        TestEnum.values, "valueOne");
+    expect(result is TestEnum, true);
+    final result2 = EnumToString.fromString<OtherEnumForTesting>(OtherEnumForTesting.values, "helloImAnEnumValue");
+    expect(result2 is OtherEnumForTesting, true);
+    expect(result2 is TestEnum, false);
+  });
 }
