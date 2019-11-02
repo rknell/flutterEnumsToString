@@ -15,7 +15,7 @@ class EnumToString {
     return camelCaseToWords(parsed);
   }
 
-  static fromString<T>(List<T> enumValues, String value) {
+  static T fromString<T>(List<T> enumValues, String value) {
     if (value == null || enumValues == null) return null;
 
     return enumValues.singleWhere(

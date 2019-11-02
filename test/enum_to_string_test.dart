@@ -34,6 +34,16 @@ void main() {
         OtherEnumForTesting.helloImAnEnumValue);
   });
 
+  test('it should convert a string to an enum ignoring case', () {
+    expect(EnumToString.fromString<TestEnum>(TestEnum.values, "VaLueONe"),
+        TestEnum.valueOne);
+    expect(EnumToString.fromString(TestEnum.values, "vAlUe2"), TestEnum.Value2);
+    expect(
+        EnumToString.fromString(
+            OtherEnumForTesting.values, "hEllOImAnEnUmVAlUE"),
+        OtherEnumForTesting.helloImAnEnumValue);
+  });
+
   test('it should maintain typing', () {
     final result = EnumToString.fromString<TestEnum>(
         TestEnum.values, "valueOne");
