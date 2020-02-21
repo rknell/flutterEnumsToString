@@ -19,7 +19,15 @@ class EnumToString {
     if (value == null || enumValues == null) return null;
 
     return enumValues.singleWhere(
-        (enumItem) => EnumToString.parse(enumItem)?.toLowerCase() == value?.toLowerCase(),
+        (enumItem) =>
+            EnumToString.parse(enumItem)?.toLowerCase() == value?.toLowerCase(),
         orElse: () => null);
+  }
+
+  static List<String> toList<T>(List<T> enumValues) {
+    if (enumValues == null) return null;
+    List<String> enumList =
+        enumValues.map((t) => EnumToString.parse(t)).toList();
+    return enumList;
   }
 }
