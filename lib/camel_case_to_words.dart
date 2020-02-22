@@ -47,7 +47,7 @@ const String WORD = '(?:[' +
 String camelCaseToWords(String subject,
     [Pattern customPattern = defaultPattern]) {
   if (subject is! String || subject.isEmpty) {
-    return "";
+    return '';
   }
 
   RegExp pattern;
@@ -62,7 +62,7 @@ String camelCaseToWords(String subject,
 
   words[0] = words[0][0].toUpperCase() + words[0].substring(1);
 
-  for (int i = 1; i < words.length; i++) {
+  for (var i = 1; i < words.length; i++) {
     words[i] = words[i].toLowerCase();
   }
 

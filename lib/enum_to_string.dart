@@ -26,8 +26,7 @@ class EnumToString {
 
   static List<String> toList<T>(List<T> enumValues) {
     if (enumValues == null) return null;
-    List<String> enumList =
-        enumValues.map((t) => EnumToString.parse(t)).toList();
+    var enumList = enumValues.map((t) => EnumToString.parse(t)).toList();
     return enumList;
   }
 }
