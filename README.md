@@ -1,4 +1,5 @@
 # enum_to_string
+
 [![Build Status](https://travis-ci.org/rknell/flutterEnumsToString.svg?branch=master)](https://travis-ci.org/rknell/flutterEnumsToString)
 
 Better conversion of ENUMs to string - It also can handle converting back again!
@@ -23,7 +24,7 @@ Output `Test Value 1`
 ```dart
 import 'package:enum_to_string:enum_to_string.dart';
 
-enum TestEnum { testValue1 };
+enum TestEnum { testValue1, testValue2 };
 
 convert(){
     String result = EnumToString.parse(TestEnum.testValue1);
@@ -31,9 +32,12 @@ convert(){
 
     String resultCamelCase = EnumToString.parseCamelCase(TestEnum.testValue1);
     //result = 'Test Value 1'
-    
+
     final result = EnumToString.fromString(TestEnum.values, "testValue1");
     // TestEnum.testValue1
+
+    EnumToString.toList(TestEnum.values);
+    //result = 'testValue1','testValue2',
 }
 ```
 

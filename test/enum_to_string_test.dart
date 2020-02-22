@@ -45,11 +45,18 @@ void main() {
   });
 
   test('it should maintain typing', () {
-    final result = EnumToString.fromString<TestEnum>(
-        TestEnum.values, "valueOne");
+    final result =
+        EnumToString.fromString<TestEnum>(TestEnum.values, "valueOne");
     expect(result is TestEnum, true);
-    final result2 = EnumToString.fromString<OtherEnumForTesting>(OtherEnumForTesting.values, "helloImAnEnumValue");
+    final result2 = EnumToString.fromString<OtherEnumForTesting>(
+        OtherEnumForTesting.values, "helloImAnEnumValue");
     expect(result2 is OtherEnumForTesting, true);
     expect(result2 is TestEnum, false);
+  });
+
+  test('it should convert enum to string list', () {
+    expect(EnumToString.toList(TestEnum.values)[0], "valueOne");
+    expect(EnumToString.toList(TestEnum.values)[1], "Value2");
+    expect(EnumToString.toList(null), null);
   });
 }
