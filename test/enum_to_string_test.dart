@@ -84,7 +84,7 @@ void main() {
   });
   
   test('it should convert enum to string list in camelCase', () {
-    expect(EnumToString.toList(TestEnum.values, camelCase: true)[0], 'Value One');
+    expect(EnumToString.toList(TestEnum.values, camelCase: true)[0], 'Value one');
     expect(EnumToString.toList(TestEnum.values, camelCase: true)[1], 'Value 2');
     expect(EnumToString.toList(null, camelCase: true), null);
   });
