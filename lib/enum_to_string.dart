@@ -6,8 +6,8 @@ import 'camel_case_to_words.dart';
 class EnumToString {
   static String parse(enumItem, {bool camelCase = false}) {
     if (enumItem == null) return null;
-    String tmp = enumItem.toString().split('.')[1];
-    return !camelCase ? tmp : camelCaseToWords(tmp);
+    final _tmp = enumItem.toString().split('.')[1];
+    return !camelCase ? _tmp : camelCaseToWords(_tmp);
   }
 
   static String parseCamelCase(enumItem) {
