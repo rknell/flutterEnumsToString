@@ -14,6 +14,24 @@ void main() {
     expect(EnumToString.parse(null), null);
   });
 
+  test('it should also convert enums to string', () {
+    expect(EnumToString.parse(TestEnum.valueOne, camelCase: false), 'valueOne');
+    expect(EnumToString.parse(TestEnum.Value2, camelCase: false), 'Value2');
+    expect(EnumToString.parse(TestEnum.testValue3, camelCase: false), 'testValue3');
+    expect(EnumToString.parse(OtherEnumForTesting.helloImAnEnumValue, camelCase: false),
+        'helloImAnEnumValue');
+    expect(EnumToString.parse(null, camelCase: false), null);
+  });
+  
+  test('it should also convert camelCase enums to words', () {
+    expect(EnumToString.parse(TestEnum.valueOne, camelCase: true), 'Value one');
+    expect(EnumToString.parse(TestEnum.Value2, camelCase: true), 'Value 2');
+    expect(EnumToString.parse(TestEnum.testValue3, camelCase: true), 'Test value 3');
+    expect(EnumToString.parse(OtherEnumForTesting.helloImAnEnumValue, camelCase: true),
+        'Hello im an enum value');
+    expect(EnumToString.parse(null, camelCase: true), null);
+  });
+  
   test('it should convert camelCase enums to words', () {
     expect(EnumToString.parseCamelCase(TestEnum.valueOne), 'Value one');
     expect(EnumToString.parseCamelCase(TestEnum.Value2), 'Value 2');
@@ -57,5 +75,17 @@ void main() {
     expect(EnumToString.toList(TestEnum.values)[0], 'valueOne');
     expect(EnumToString.toList(TestEnum.values)[1], 'Value2');
     expect(EnumToString.toList(null), null);
+  });
+  
+  test('it should also convert enum to string list', () {
+    expect(EnumToString.toList(TestEnum.values, camelCase: false)[0], 'valueOne');
+    expect(EnumToString.toList(TestEnum.values, camelCase: false)[1], 'Value2');
+    expect(EnumToString.toList(null, camelCase: false), null);
+  });
+  
+  test('it should convert enum to string list in camelCase', () {
+    expect(EnumToString.toList(TestEnum.values, camelCase: true)[0], 'Value One');
+    expect(EnumToString.toList(TestEnum.values, camelCase: true)[1], 'Value 2');
+    expect(EnumToString.toList(null, camelCase: true), null);
   });
 }
