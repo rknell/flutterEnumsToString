@@ -27,10 +27,10 @@ class EnumToString {
 
   static List<String> toList<T>(List<T> enumValues, {bool camelCase = false}) {
     if (enumValues == null) return null;
-    List<String> enumList = enumValues
+    final _enumList = enumValues
         .map((t) =>
             !camelCase ? EnumToString.parse(t) : EnumToString.parseCamelCase(t))
         .toList();
-    return enumList;
+    return _enumList;
   }
 }
