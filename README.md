@@ -22,7 +22,7 @@ Output `Test Value 1`
 ## Usage
 
 ```dart
-import 'package:enum_to_string:enum_to_string.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 
 enum TestEnum { testValue1, testValue2 };
 
