@@ -4,9 +4,10 @@ import 'camel_case_to_words.dart';
 
 /// A Calculator.
 class EnumToString {
-  static String parse(enumItem) {
+  static String parse(enumItem, {bool camelCase = false}) {
     if (enumItem == null) return null;
-    return enumItem.toString().split('.')[1];
+    final _tmp = enumItem.toString().split('.')[1];
+    return !camelCase ? _tmp : camelCaseToWords(_tmp);
   }
 
   static String parseCamelCase(enumItem) {
@@ -24,9 +25,12 @@ class EnumToString {
         orElse: () => null);
   }
 
-  static List<String> toList<T>(List<T> enumValues) {
+  static List<String> toList<T>(List<T> enumValues, {bool camelCase = false}) {
     if (enumValues == null) return null;
-    var enumList = enumValues.map((t) => EnumToString.parse(t)).toList();
-    return enumList;
+    final _enumList = enumValues
+        .map((t) =>
+            !camelCase ? EnumToString.parse(t) : EnumToString.parseCamelCase(t))
+        .toList();
+    return _enumList;
   }
 }
