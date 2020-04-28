@@ -56,6 +56,14 @@ void main() {
             OtherEnumForTesting.values, 'helloImAnEnumValue'),
         OtherEnumForTesting.helloImAnEnumValue);
   });
+  
+  test('it should find an enum value index by string', () {
+    expect(EnumToString.indexOf<TestEnum>(TestEnum.values, 'valueOne'), 0);
+    expect(EnumToString.indexOf(TestEnum.values, 'Value2'), 1);
+    expect(
+        EnumToString.indexOf(
+            OtherEnumForTesting.values, 'helloImAnEnumValue'), 0);
+  });
 
   test('it should convert a string to an enum ignoring case', () {
     expect(EnumToString.fromString<TestEnum>(TestEnum.values, 'VaLueONe'),
