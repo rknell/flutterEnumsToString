@@ -25,6 +25,9 @@ class EnumToString {
         orElse: () => null);
   }
 
+  static int indexOf<T>(List<T> enumValues, String value) =>
+      enumValues.indexOf(fromString<T>(enumValues, value));
+
   static List<String> toList<T>(List<T> enumValues, {bool camelCase = false}) {
     if (enumValues == null) return null;
     final _enumList = enumValues
