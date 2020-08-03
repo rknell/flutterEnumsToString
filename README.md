@@ -44,4 +44,16 @@ convert(){
 }
 ```
 
+## Contributing
+
 Any pull requests / extensions welcome, this was just an annoying thing I needed to fix a couple of times so viola! a package was born.
+
+It is worth noting that for consistency purposes there are a number of linting checks that need to pass to move through the CI pipeline and make sure merging goes smoothly.
+
+You can test / fix any issues that will prevent the pull request being accepted by running the following commands (this is an example of the macOS cli):
+
+```
+pub run test --platform vm
+dartanalyzer --fatal-infos .
+dartfmt -w lib test example
+```
