@@ -2,10 +2,29 @@ library enum_to_string;
 
 import 'camel_case_to_words.dart';
 
-/// A Calculator.
+class NotAnEnumException implements Exception {
+  dynamic value;
+
+  NotAnEnumException(this.value);
+
+  @override
+  String toString() =>
+      '${value.toString()} of type ${value.runtimeType.toString()} is not an enum item.';
+}
+
 class EnumToString {
+  static bool _isEnumItem(enumItem) {
+    final splitted_enum = enumItem.toString().split('.');
+    return splitted_enum.length > 1 &&
+        splitted_enum[0] == enumItem.runtimeType.toString();
+  }
+
   static String parse(enumItem, {bool camelCase = false}) {
     if (enumItem == null) return null;
+
+    if (!_isEnumItem(enumItem)) {
+      throw NotAnEnumException(enumItem);
+    }
     final _tmp = enumItem.toString().split('.')[1];
     return !camelCase ? _tmp : camelCaseToWords(_tmp);
   }

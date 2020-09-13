@@ -104,4 +104,11 @@ void main() {
     expect(EnumToString.toList(TestEnum.values, camelCase: true)[1], 'Value 2');
     expect(EnumToString.toList(null, camelCase: true), null);
   });
+
+  test('it should throw proper exception', () {
+    expect(() => EnumToString.parse('SomeEnum.SomeValue'),
+        throwsA(TypeMatcher<NotAnEnumException>()));
+    expect(() => EnumToString.parse('SomeString'),
+        throwsA(TypeMatcher<NotAnEnumException>()));
+  });
 }
