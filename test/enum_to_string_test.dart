@@ -111,4 +111,9 @@ void main() {
     expect(() => EnumToString.parse('SomeString'),
         throwsA(TypeMatcher<NotAnEnumException>()));
   });
+
+  test('it should populate a list of enum values from a list of strings', (){
+    final result = EnumToString.fromList(TestEnum.values, ["ValueOne", "Value2", "dfljk;asdfakl;jds"]);
+    expect(result, [TestEnum.valueOne, TestEnum.Value2, null]);
+  });
 }
