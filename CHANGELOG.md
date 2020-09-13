@@ -1,3 +1,9 @@
+## [1.0.10] - 2020-09-14
+
+- Added .fromString function (Thanks @amoslai5128)
+- Better error handling (Thanks @lironhl)
+- Improved documentation
+
 ## [1.0.9] - 2020-02-21
 
 - Added .toList function (Thanks @CodeGrue)
