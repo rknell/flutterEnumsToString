@@ -55,4 +55,15 @@ class EnumToString {
         .toList();
     return _enumList;
   }
+
+  static List<T> fromList<T>(List<T> enumValues, List valueList) {
+    if (valueList == null || enumValues == null) return null;
+
+    return List<T>.from(valueList.map((e) => e == null
+        ? null
+        : enumValues.singleWhere((enumItem) {
+            return EnumToString.parse(enumItem)?.toLowerCase() ==
+                e.toString()?.toLowerCase();
+          }, orElse: () => null)));
+  }
 }
