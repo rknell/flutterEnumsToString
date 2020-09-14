@@ -26,7 +26,8 @@ class EnumToString {
   ///
   /// If you pass in the option [camelCase]=true it will convert it to words
   /// So TestEnum.valueOne will become Value One
-  static String parse(enumItem, {bool camelCase = false}) {
+  @override
+  static String toString(enumItem, {bool camelCase = false}) {
     if (enumItem == null) return null;
 
     if (!_isEnumItem(enumItem)) {
@@ -35,12 +36,15 @@ class EnumToString {
     final _tmp = enumItem.toString().split('.')[1];
     return !camelCase ? _tmp : camelCaseToWords(_tmp);
   }
+  
+  @Deprecated('Renamed function to EnumToString.toString to make it clearer')
+  static String parse(enumItem, {bool camelCase = false}) => toString(enumItem, camelCase: camelCase);
 
   /// An alias for parse(item, camelCase: true)
   ///
-  @Deprecated("Deprecated in favour of using parse(item, camelCase: true)")
+  @Deprecated('Deprecated in favour of using parse(item, camelCase: true)')
   static String parseCamelCase(enumItem) {
-    return EnumToString.parse(enumItem, camelCase: true);
+    return EnumToString.toString(enumItem, camelCase: true);
   }
 
   /// Given a string, find and return its matching enum value
@@ -56,7 +60,7 @@ class EnumToString {
 
     return enumValues.singleWhere(
         (enumItem) =>
-            EnumToString.parse(enumItem)?.toLowerCase() == value?.toLowerCase(),
+            EnumToString.toString(enumItem)?.toLowerCase() == value?.toLowerCase(),
         orElse: () => null);
   }
 
@@ -74,25 +78,24 @@ class EnumToString {
     if (enumValues == null) return null;
     final _enumList = enumValues
         .map((t) => !camelCase
-            ? EnumToString.parse(t)
-            : EnumToString.parse(t, camelCase: true))
+            ? EnumToString.toString(t)
+            : EnumToString.toString(t, camelCase: true))
         .toList();
     return _enumList;
   }
 
-  /// Get a list of enums given a list of strings. 
+  /// Get a list of enums given a list of strings.
   /// Basically just EnumToString.fromString, but using lists
-  /// 
+  ///
   /// Returns null for items that are not found.
   ///
   /// As with fromString it is not case sensitive
-  /// 
+  ///
   /// Eg. EnumToString.fromList(TestEnum.values, ["valueOne", "value2"]
   static List<T> fromList<T>(List<T> enumValues, List valueList) {
     if (valueList == null || enumValues == null) return null;
 
-    return List<T>.from(valueList.map((item) => item == null
-        ? null
-        : fromString(enumValues, item)));
+    return List<T>.from(valueList
+        .map((item) => item == null ? null : fromString(enumValues, item)));
   }
 }

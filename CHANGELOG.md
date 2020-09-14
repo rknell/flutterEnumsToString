@@ -3,6 +3,8 @@
 - Added .fromString function (Thanks @amoslai5128)
 - Better error handling (Thanks @lironhl)
 - Improved documentation
+- Deprecated parseCamelCase function in favour of toString(enumItem, camelCase: true)
+- Deprecated parse in favour of toString
 
 ## [1.0.9] - 2020-02-21
 

@@ -4,14 +4,14 @@ enum TestEnum { ValueOne, Value2, valueThree }
 
 void main() {
   // Parse enum to a string
-  EnumToString.parse(TestEnum.ValueOne); //ValueOne
-  EnumToString.parse(TestEnum.Value2); //Value2
-  EnumToString.parse(TestEnum.valueThree); //valueThree
+  EnumToString.toString(TestEnum.ValueOne); //ValueOne
+  EnumToString.toString(TestEnum.Value2); //Value2
+  EnumToString.toString(TestEnum.valueThree); //valueThree
 
   // Parse an enum to something more human readable
-  EnumToString.parseCamelCase(TestEnum.ValueOne); //Value one
-  EnumToString.parseCamelCase(TestEnum.Value2); //Value 2
-  EnumToString.parseCamelCase(TestEnum.valueThree); //Value three
+  EnumToString.toString(TestEnum.ValueOne); //Value one
+  EnumToString.toString(TestEnum.Value2); //Value 2
+  EnumToString.toString(TestEnum.valueThree); //Value three
 
   // Get an enum from a string
   EnumToString.fromString(TestEnum.values, 'ValueOne'); //, TestEnum.ValueOne
@@ -21,4 +21,7 @@ void main() {
   // Get an enum from a string
   EnumToString.toList<TestEnum>(
       TestEnum.values); // {ValueOne, Value2, valuethree}
+
+  EnumToString.fromList(TestEnum.values, ['valueOne', 'Value2', 'alksdfjsda']);
+  //[TestEnum.ValueOne, TestEnum.Value2, null]
 }
