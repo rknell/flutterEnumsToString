@@ -1,3 +1,7 @@
+## [1.0.11] - 2020-09-14
+
+- Fixing major mistake, renaming new function to convertToString so as not to conflict with system calls
+
 ## [1.0.10] - 2020-09-14
 
 - Added .fromString function (Thanks @amoslai5128)
