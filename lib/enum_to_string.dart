@@ -36,13 +36,15 @@ class EnumToString {
     return !camelCase ? _tmp : camelCaseToWords(_tmp);
   }
 
-  @Deprecated('Renamed function to EnumToString.convertToString to make it clearer')
+  @Deprecated(
+      'Renamed function to EnumToString.convertToString to make it clearer')
   static String parse(enumItem, {bool camelCase = false}) =>
       convertToString(enumItem, camelCase: camelCase);
 
   /// An alias for parse(item, camelCase: true)
   ///
-  @Deprecated('Deprecated in favour of using convertToString(item, camelCase: true)')
+  @Deprecated(
+      'Deprecated in favour of using convertToString(item, camelCase: true)')
   static String parseCamelCase(enumItem) {
     return EnumToString.convertToString(enumItem, camelCase: true);
   }
