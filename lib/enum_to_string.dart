@@ -26,8 +26,7 @@ class EnumToString {
   ///
   /// If you pass in the option [camelCase]=true it will convert it to words
   /// So TestEnum.valueOne will become Value One
-  @override
-  static String toString(enumItem, {bool camelCase = false}) {
+  static String convertToString(enumItem, {bool camelCase = false}) {
     if (enumItem == null) return null;
 
     if (!_isEnumItem(enumItem)) {
@@ -36,15 +35,16 @@ class EnumToString {
     final _tmp = enumItem.toString().split('.')[1];
     return !camelCase ? _tmp : camelCaseToWords(_tmp);
   }
-  
-  @Deprecated('Renamed function to EnumToString.toString to make it clearer')
-  static String parse(enumItem, {bool camelCase = false}) => toString(enumItem, camelCase: camelCase);
+
+  @Deprecated('Renamed function to EnumToString.convertToString to make it clearer')
+  static String parse(enumItem, {bool camelCase = false}) =>
+      convertToString(enumItem, camelCase: camelCase);
 
   /// An alias for parse(item, camelCase: true)
   ///
-  @Deprecated('Deprecated in favour of using parse(item, camelCase: true)')
+  @Deprecated('Deprecated in favour of using convertToString(item, camelCase: true)')
   static String parseCamelCase(enumItem) {
-    return EnumToString.toString(enumItem, camelCase: true);
+    return EnumToString.convertToString(enumItem, camelCase: true);
   }
 
   /// Given a string, find and return its matching enum value
@@ -60,7 +60,8 @@ class EnumToString {
 
     return enumValues.singleWhere(
         (enumItem) =>
-            EnumToString.toString(enumItem)?.toLowerCase() == value?.toLowerCase(),
+            EnumToString.convertToString(enumItem)?.toLowerCase() ==
+            value?.toLowerCase(),
         orElse: () => null);
   }
 
@@ -78,8 +79,8 @@ class EnumToString {
     if (enumValues == null) return null;
     final _enumList = enumValues
         .map((t) => !camelCase
-            ? EnumToString.toString(t)
-            : EnumToString.toString(t, camelCase: true))
+            ? EnumToString.convertToString(t)
+            : EnumToString.convertToString(t, camelCase: true))
         .toList();
     return _enumList;
   }

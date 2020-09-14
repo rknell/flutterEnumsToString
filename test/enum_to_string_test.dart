@@ -6,38 +6,38 @@ enum OtherEnumForTesting { helloImAnEnumValue }
 
 void main() {
   test('it should convert enums to string', () {
-    expect(EnumToString.toString(TestEnum.valueOne), 'valueOne');
-    expect(EnumToString.toString(TestEnum.Value2), 'Value2');
-    expect(EnumToString.toString(TestEnum.testValue3), 'testValue3');
-    expect(EnumToString.toString(OtherEnumForTesting.helloImAnEnumValue),
+    expect(EnumToString.convertToString(TestEnum.valueOne), 'valueOne');
+    expect(EnumToString.convertToString(TestEnum.Value2), 'Value2');
+    expect(EnumToString.convertToString(TestEnum.testValue3), 'testValue3');
+    expect(EnumToString.convertToString(OtherEnumForTesting.helloImAnEnumValue),
         'helloImAnEnumValue');
-    expect(EnumToString.toString(null), null);
+    expect(EnumToString.convertToString(null), null);
   });
 
   test('it should also convert enums to string', () {
     expect(
-        EnumToString.toString(TestEnum.valueOne, camelCase: false), 'valueOne');
-    expect(EnumToString.toString(TestEnum.Value2, camelCase: false), 'Value2');
-    expect(EnumToString.toString(TestEnum.testValue3, camelCase: false),
+        EnumToString.convertToString(TestEnum.valueOne, camelCase: false), 'valueOne');
+    expect(EnumToString.convertToString(TestEnum.Value2, camelCase: false), 'Value2');
+    expect(EnumToString.convertToString(TestEnum.testValue3, camelCase: false),
         'testValue3');
     expect(
-        EnumToString.toString(OtherEnumForTesting.helloImAnEnumValue,
+        EnumToString.convertToString(OtherEnumForTesting.helloImAnEnumValue,
             camelCase: false),
         'helloImAnEnumValue');
-    expect(EnumToString.toString(null, camelCase: false), null);
+    expect(EnumToString.convertToString(null, camelCase: false), null);
   });
 
   test('it should also convert camelCase enums to words', () {
     expect(
-        EnumToString.toString(TestEnum.valueOne, camelCase: true), 'Value one');
-    expect(EnumToString.toString(TestEnum.Value2, camelCase: true), 'Value 2');
-    expect(EnumToString.toString(TestEnum.testValue3, camelCase: true),
+        EnumToString.convertToString(TestEnum.valueOne, camelCase: true), 'Value one');
+    expect(EnumToString.convertToString(TestEnum.Value2, camelCase: true), 'Value 2');
+    expect(EnumToString.convertToString(TestEnum.testValue3, camelCase: true),
         'Test value 3');
     expect(
-        EnumToString.toString(OtherEnumForTesting.helloImAnEnumValue,
+        EnumToString.convertToString(OtherEnumForTesting.helloImAnEnumValue,
             camelCase: true),
         'Hello im an enum value');
-    expect(EnumToString.toString(null, camelCase: true), null);
+    expect(EnumToString.convertToString(null, camelCase: true), null);
   });
 
   test('it should convert camelCase enums to words', () {
@@ -58,15 +58,15 @@ void main() {
       'it should convert camelCase enums to words using non deprecated functions',
       () {
     expect(
-        EnumToString.toString(TestEnum.valueOne, camelCase: true), 'Value one');
-    expect(EnumToString.toString(TestEnum.Value2, camelCase: true), 'Value 2');
-    expect(EnumToString.toString(TestEnum.testValue3, camelCase: true),
+        EnumToString.convertToString(TestEnum.valueOne, camelCase: true), 'Value one');
+    expect(EnumToString.convertToString(TestEnum.Value2, camelCase: true), 'Value 2');
+    expect(EnumToString.convertToString(TestEnum.testValue3, camelCase: true),
         'Test value 3');
     expect(
-        EnumToString.toString(OtherEnumForTesting.helloImAnEnumValue,
+        EnumToString.convertToString(OtherEnumForTesting.helloImAnEnumValue,
             camelCase: true),
         'Hello im an enum value');
-    expect(EnumToString.toString(null), null);
+    expect(EnumToString.convertToString(null), null);
   });
 
   test('it should convert a string to an enum', () {
@@ -128,9 +128,9 @@ void main() {
   });
 
   test('it should throw proper exception', () {
-    expect(() => EnumToString.toString('SomeEnum.SomeValue'),
+    expect(() => EnumToString.convertToString('SomeEnum.SomeValue'),
         throwsA(TypeMatcher<NotAnEnumException>()));
-    expect(() => EnumToString.toString('SomeString'),
+    expect(() => EnumToString.convertToString('SomeString'),
         throwsA(TypeMatcher<NotAnEnumException>()));
   });
 

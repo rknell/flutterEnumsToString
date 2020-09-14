@@ -4,14 +4,14 @@ enum TestEnum { ValueOne, Value2, valueThree }
 
 void main() {
   // Parse enum to a string
-  EnumToString.toString(TestEnum.ValueOne); //ValueOne
-  EnumToString.toString(TestEnum.Value2); //Value2
-  EnumToString.toString(TestEnum.valueThree); //valueThree
+  EnumToString.convertToString(TestEnum.ValueOne); //ValueOne
+  EnumToString.convertToString(TestEnum.Value2); //Value2
+  EnumToString.convertToString(TestEnum.valueThree); //valueThree
 
   // Parse an enum to something more human readable
-  EnumToString.toString(TestEnum.ValueOne); //Value one
-  EnumToString.toString(TestEnum.Value2); //Value 2
-  EnumToString.toString(TestEnum.valueThree); //Value three
+  EnumToString.convertToString(TestEnum.ValueOne); //Value one
+  EnumToString.convertToString(TestEnum.Value2); //Value 2
+  EnumToString.convertToString(TestEnum.valueThree); //Value three
 
   // Get an enum from a string
   EnumToString.fromString(TestEnum.values, 'ValueOne'); //, TestEnum.ValueOne
