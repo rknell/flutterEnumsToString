@@ -4,11 +4,6 @@
 
 Better conversion of ENUMs to string - It also can handle converting back again!
 
-WARNING: THERE HAVE BEEN REPORTS OF A BREAKING CHANGE FROM THE FLUTTER WEB TEAM THAT ONLY OCCURS UPON RELEASE MODE (Amongst other things, not just this package):
-https://github.com/flutter/flutter/issues/66236
-
-WE ARE STILL INVESTIGATING A SOLUTION.
-
 ## What it does
 
 It takes an enum such as:

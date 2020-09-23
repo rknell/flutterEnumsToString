@@ -29,9 +29,12 @@ class EnumToString {
   static String convertToString(enumItem, {bool camelCase = false}) {
     if (enumItem == null) return null;
 
-    if (!_isEnumItem(enumItem)) {
-      throw NotAnEnumException(enumItem);
-    }
+    // Temporarily removed the enum item check as it breaks in release mode.
+    // More info here: https://github.com/flutter/flutter/issues/66236#issuecomment-697967770
+    //
+    // if (!_isEnumItem(enumItem)) {
+    //   throw NotAnEnumException(enumItem);
+    // }
     final _tmp = enumItem.toString().split('.')[1];
     return !camelCase ? _tmp : camelCaseToWords(_tmp);
   }

@@ -1,8 +1,17 @@
+## [1.0.12] - 2020-09-24
+
+- Fixing issue where minification in the web breaks the app. Unfortunately we can't safely check if the object type is an enum when compiled in release mode using type.toString as a result of this change.
+More information can be found here:
+https://github.com/flutter/flutter/issues/66236#issuecomment-697967770
+
+
 ## [1.0.11] - 2020-09-14
 
 - Fixing major mistake, renaming new function to convertToString so as not to conflict with system calls
 
 ## [1.0.10] - 2020-09-14
+
+    BROKEN BUILD DO NOT USE
 
 - Added .fromString function (Thanks @amoslai5128)
 - Better error handling (Thanks @lironhl)
