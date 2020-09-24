@@ -2,21 +2,11 @@ library enum_to_string;
 
 import 'camel_case_to_words.dart';
 
-class NotAnEnumException implements Exception {
-  dynamic value;
-
-  NotAnEnumException(this.value);
-
-  @override
-  String toString() =>
-      '${value.toString()} of type ${value.runtimeType.toString()} is not an enum item.';
-}
-
 class EnumToString {
   static bool _isEnumItem(enumItem) {
-    final splitted_enum = enumItem.toString().split('.');
-    return splitted_enum.length > 1 &&
-        splitted_enum[0] == enumItem.runtimeType.toString();
+    final split_enum = enumItem.toString().split('.');
+    return split_enum.length > 1 &&
+        split_enum[0] == enumItem.runtimeType.toString();
   }
 
   /// Convert an enum to a string
@@ -29,12 +19,8 @@ class EnumToString {
   static String convertToString(enumItem, {bool camelCase = false}) {
     if (enumItem == null) return null;
 
-    // Temporarily removed the enum item check as it breaks in release mode.
-    // More info here: https://github.com/flutter/flutter/issues/66236#issuecomment-697967770
-    //
-    // if (!_isEnumItem(enumItem)) {
-    //   throw NotAnEnumException(enumItem);
-    // }
+    assert(_isEnumItem(enumItem),
+        '$enumItem of type ${enumItem.runtimeType.toString()} is not an enum item');
     final _tmp = enumItem.toString().split('.')[1];
     return !camelCase ? _tmp : camelCaseToWords(_tmp);
   }

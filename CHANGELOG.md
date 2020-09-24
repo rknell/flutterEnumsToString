@@ -1,3 +1,7 @@
+## [1.0.13] - 2020-09-25
+
+- Fixed previous bug by replacing exception with an assertion. The library will no longer break in release mode with minified code, but it will also not throw an exception in production if you try to parse a non enum item.
+
 ## [1.0.12] - 2020-09-24
 
 - Fixing issue where minification in the web breaks the app. Unfortunately we can't safely check if the object type is an enum when compiled in release mode using type.toString as a result of this change.

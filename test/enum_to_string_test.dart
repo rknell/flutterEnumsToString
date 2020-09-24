@@ -132,12 +132,10 @@ void main() {
 
   test('it should throw proper exception', () {
     expect(() => EnumToString.convertToString('SomeEnum.SomeValue'),
-        throwsA(TypeMatcher<NotAnEnumException>()));
+        throwsA(isA<AssertionError>()));
     expect(() => EnumToString.convertToString('SomeString'),
-        throwsA(TypeMatcher<NotAnEnumException>()));
-  },
-      skip:
-          "failing because https://github.com/flutter/flutter/issues/66236#issuecomment-697967770");
+        throwsA(isA<AssertionError>()));
+  });
 
   test('it should populate a list of enum values from a list of strings', () {
     final result = EnumToString.fromList(
