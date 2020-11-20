@@ -46,12 +46,14 @@ class EnumToString {
   /// Example final result = EnumToString.fromString(TestEnum.values, "valueOne")
   /// result == TestEnum.valueOne //true
   ///
-  static T fromString<T>(List<T> enumValues, String value) {
+  static T fromString<T>(List<T> enumValues, String value,
+      {bool camelCase = false}) {
     if (value == null || enumValues == null) return null;
 
     return enumValues.singleWhere(
         (enumItem) =>
-            EnumToString.convertToString(enumItem)?.toLowerCase() ==
+            EnumToString.convertToString(enumItem, camelCase: camelCase)
+                ?.toLowerCase() ==
             value?.toLowerCase(),
         orElse: () => null);
   }

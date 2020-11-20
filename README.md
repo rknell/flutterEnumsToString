@@ -36,6 +36,9 @@ convert(){
     EnumToString.fromString(TestEnum.values, "testValue1"); //Enum
     // TestEnum.testValue1
 
+    EnumToString.fromString(TestEnum.values, "Test Value 1", camelCase: true);
+    // TestEnum.testValue1
+
     List<String> EnumToString.toList(TestEnum.values);
     //result = ['testValue1','testValue2'],
 

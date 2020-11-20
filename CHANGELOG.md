@@ -1,3 +1,7 @@
+## [1.0.14] - 2020-11-20
+
+- Added camelCase flag in "fromString" function to properly handle conversion back of a string with spaces to enum
+
 ## [1.0.13] - 2020-09-25
 
 - Fixed previous bug by replacing exception with an assertion. The library will no longer break in release mode with minified code, but it will also not throw an exception in production if you try to parse a non enum item.
