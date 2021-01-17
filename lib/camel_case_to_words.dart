@@ -63,7 +63,7 @@ String camelCaseToWords(String subject,
   words[0] = words[0][0].toUpperCase() + words[0].substring(1);
 
   for (var i = 1; i < words.length; i++) {
-    words[i] = words[i].toLowerCase();
+     words[i] = words[i][0].toUpperCase()+words[i].substring(1).toLowerCase();
   }
 
   return words.join(' ');
