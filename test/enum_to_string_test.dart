@@ -143,9 +143,9 @@ void main() {
     expect(result, [TestEnum.valueOne, TestEnum.Value2, null]);
   });
 
-  test("it should get an enum item from a string with spaces", () {
+  test('it should get an enum item from a string with spaces', () {
     final result =
-        EnumToString.fromString(TestEnum.values, "Value One", camelCase: true);
+        EnumToString.fromString(TestEnum.values, 'Value One', camelCase: true);
     expect(result, TestEnum.valueOne);
   });
 }
