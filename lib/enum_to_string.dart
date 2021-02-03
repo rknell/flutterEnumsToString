@@ -1,6 +1,7 @@
 library enum_to_string;
 
 import 'camel_case_to_words.dart';
+import 'package:collection/collection.dart' show IterableExtension;
 
 class EnumToString {
   static bool _isEnumItem(enumItem) {
@@ -16,7 +17,7 @@ class EnumToString {
   ///
   /// If you pass in the option [camelCase]=true it will convert it to words
   /// So TestEnum.valueOne will become Value One
-  static String convertToString(enumItem, {bool camelCase = false}) {
+  static String? convertToString(enumItem, {bool camelCase = false}) {
     if (enumItem == null) return null;
 
     assert(_isEnumItem(enumItem),
@@ -27,14 +28,14 @@ class EnumToString {
 
   @Deprecated(
       'Renamed function to EnumToString.convertToString to make it clearer')
-  static String parse(enumItem, {bool camelCase = false}) =>
+  static String? parse(enumItem, {bool camelCase = false}) =>
       convertToString(enumItem, camelCase: camelCase);
 
   /// An alias for parse(item, camelCase: true)
   ///
   @Deprecated(
       'Deprecated in favour of using convertToString(item, camelCase: true)')
-  static String parseCamelCase(enumItem) {
+  static String? parseCamelCase(enumItem) {
     return EnumToString.convertToString(enumItem, camelCase: true);
   }
 
@@ -46,16 +47,15 @@ class EnumToString {
   /// Example final result = EnumToString.fromString(TestEnum.values, "valueOne")
   /// result == TestEnum.valueOne //true
   ///
-  static T fromString<T>(List<T> enumValues, String value,
+  static T? fromString<T>(List<T>? enumValues, String? value,
       {bool camelCase = false}) {
     if (value == null || enumValues == null) return null;
 
-    return enumValues.singleWhere(
+    return enumValues.singleWhereOrNull(
         (enumItem) =>
             EnumToString.convertToString(enumItem, camelCase: camelCase)
                 ?.toLowerCase() ==
-            value?.toLowerCase(),
-        orElse: () => null);
+            value.toLowerCase());
   }
 
   /// Get the index of the enum value
@@ -65,10 +65,10 @@ class EnumToString {
   ///
   /// Eg. final index = EnumToString.indexOf(TestEnum.values, "valueOne")
   /// index == 0 //true
-  static int indexOf<T>(List<T> enumValues, String value) =>
-      enumValues.indexOf(fromString<T>(enumValues, value));
+  static int indexOf<T>(List<T?> enumValues, String value) =>
+      enumValues.indexOf(fromString<T?>(enumValues, value));
 
-  static List<String> toList<T>(List<T> enumValues, {bool camelCase = false}) {
+  static List<String?>? toList<T>(List<T>? enumValues, {bool camelCase = false}) {
     if (enumValues == null) return null;
     final _enumList = enumValues
         .map((t) => !camelCase
@@ -86,10 +86,10 @@ class EnumToString {
   /// As with fromString it is not case sensitive
   ///
   /// Eg. EnumToString.fromList(TestEnum.values, ["valueOne", "value2"]
-  static List<T> fromList<T>(List<T> enumValues, List valueList) {
+  static List<T?>? fromList<T>(List<T>? enumValues, List? valueList) {
     if (valueList == null || enumValues == null) return null;
 
-    return List<T>.from(valueList
+    return List<T?>.from(valueList
         .map((item) => item == null ? null : fromString(enumValues, item)));
   }
 }
