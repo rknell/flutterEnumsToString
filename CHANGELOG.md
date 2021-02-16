@@ -1,3 +1,7 @@
+## [1.0.14-nullsafety.0]
+
+- First attempt at moving to nullsafety. Cheers to @Sameerkash for spearheading the effort.
+
 ## [1.0.14] - 2020-11-20
 
 - Added camelCase flag in "fromString" function to properly handle conversion back of a string with spaces to enum

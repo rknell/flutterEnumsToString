@@ -1,7 +1,6 @@
 library enum_to_string;
 
 import 'camel_case_to_words.dart';
-import 'package:collection/collection.dart' show IterableExtension;
 
 class EnumToString {
   static bool _isEnumItem(enumItem) {
@@ -17,9 +16,8 @@ class EnumToString {
   ///
   /// If you pass in the option [camelCase]=true it will convert it to words
   /// So TestEnum.valueOne will become Value One
-  static String? convertToString(enumItem, {bool camelCase = false}) {
-    if (enumItem == null) return null;
-
+  static String convertToString(dynamic enumItem, {bool camelCase = false}) {
+    assert(enumItem != null);
     assert(_isEnumItem(enumItem),
         '$enumItem of type ${enumItem.runtimeType.toString()} is not an enum item');
     final _tmp = enumItem.toString().split('.')[1];
@@ -28,14 +26,14 @@ class EnumToString {
 
   @Deprecated(
       'Renamed function to EnumToString.convertToString to make it clearer')
-  static String? parse(enumItem, {bool camelCase = false}) =>
+  static String parse(enumItem, {bool camelCase = false}) =>
       convertToString(enumItem, camelCase: camelCase);
 
   /// An alias for parse(item, camelCase: true)
   ///
   @Deprecated(
       'Deprecated in favour of using convertToString(item, camelCase: true)')
-  static String? parseCamelCase(enumItem) {
+  static String parseCamelCase(enumItem) {
     return EnumToString.convertToString(enumItem, camelCase: true);
   }
 
@@ -47,15 +45,16 @@ class EnumToString {
   /// Example final result = EnumToString.fromString(TestEnum.values, "valueOne")
   /// result == TestEnum.valueOne //true
   ///
-  static T? fromString<T>(List<T>? enumValues, String? value,
+  static T? fromString<T>(List<T> enumValues, String value,
       {bool camelCase = false}) {
-    if (value == null || enumValues == null) return null;
-
-    return enumValues.singleWhereOrNull(
-        (enumItem) =>
-            EnumToString.convertToString(enumItem, camelCase: camelCase)
-                ?.toLowerCase() ==
-            value.toLowerCase());
+    try {
+      return enumValues.singleWhere((enumItem) =>
+          EnumToString.convertToString(enumItem, camelCase: camelCase)
+              .toLowerCase() ==
+          value.toLowerCase());
+    } on StateError catch (_) {
+      return null;
+    }
   }
 
   /// Get the index of the enum value
@@ -65,31 +64,42 @@ class EnumToString {
   ///
   /// Eg. final index = EnumToString.indexOf(TestEnum.values, "valueOne")
   /// index == 0 //true
-  static int indexOf<T>(List<T?> enumValues, String value) =>
-      enumValues.indexOf(fromString<T?>(enumValues, value));
+  static int indexOf<T>(List<T> enumValues, String value) {
+    final fromStringResult = fromString<T>(enumValues, value);
+    if (fromStringResult == null) {
+      return -1;
+    } else {
+      return enumValues.indexOf(fromStringResult);
+    }
+  }
 
-  static List<String?>? toList<T>(List<T>? enumValues, {bool camelCase = false}) {
-    if (enumValues == null) return null;
+  /// Bulk convert enum values to a list
+  ///
+  static List<String> toList<T>(List<T> enumValues, {bool camelCase = false}) {
     final _enumList = enumValues
         .map((t) => !camelCase
             ? EnumToString.convertToString(t)
             : EnumToString.convertToString(t, camelCase: true))
         .toList();
-    return _enumList;
+
+    // I am sure there is a better way to convert a nullable list to a
+    // non-nullable one, but this will do until I find out how. Happy if
+    // someone want to do a PR in the meantime to correct this.
+    var output = <String>[];
+    for (var value in _enumList) {
+      output.add(value);
+    }
+    return output;
   }
 
   /// Get a list of enums given a list of strings.
   /// Basically just EnumToString.fromString, but using lists
   ///
-  /// Returns null for items that are not found.
-  ///
   /// As with fromString it is not case sensitive
   ///
   /// Eg. EnumToString.fromList(TestEnum.values, ["valueOne", "value2"]
-  static List<T?>? fromList<T>(List<T>? enumValues, List? valueList) {
-    if (valueList == null || enumValues == null) return null;
-
-    return List<T?>.from(valueList
-        .map((item) => item == null ? null : fromString(enumValues, item)));
+  static List<T?> fromList<T>(List<T> enumValues, List valueList) {
+    return List<T?>.from(
+        valueList.map<T?>((item) => fromString(enumValues, item)));
   }
 }
