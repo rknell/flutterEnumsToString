@@ -27,10 +27,10 @@ import 'package:enum_to_string/enum_to_string.dart';
 enum TestEnum { testValue1, testValue2 };
 
 convert(){
-    String EnumToString.convertToString(TestEnum.testValue1);
+    String result = EnumToString.convertToString(TestEnum.testValue1);
     //result = 'testValue1'
 
-    String EnumToString.convertToString(TestEnum.testValue1, camelCase: true);
+    String result = EnumToString.convertToString(TestEnum.testValue1, camelCase: true);
     //result = 'Test Value 1'
 
     EnumToString.fromString(TestEnum.values, "testValue1"); //Enum
@@ -39,13 +39,13 @@ convert(){
     EnumToString.fromString(TestEnum.values, "Test Value 1", camelCase: true);
     // TestEnum.testValue1
 
-    List<String> EnumToString.toList(TestEnum.values);
+    List<String> result = EnumToString.toList(TestEnum.values);
     //result = ['testValue1','testValue2'],
 
-    List<String> EnumToString.toList(TestEnum.values, camelCase: true);
+    List<String> result = EnumToString.toList(TestEnum.values, camelCase: true);
     //result = ['Test Value 1','Test Value 2'],
     
-    List EnumToString.fromList(TestEnum.values, ["ValueOne", "Value2"]); //List<Enum>
+    List result = EnumToString.fromList(TestEnum.values, ["ValueOne", "Value2"]); //List<Enum>
     //result = [TestEnum.valueOne, TestEnum.value2];
 }
 ```
