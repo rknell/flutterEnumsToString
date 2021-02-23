@@ -1,3 +1,7 @@
+## [2.0.0-nullsafety.1]
+
+- Big version bump to try and get pub's outdated check to recognise a null safe version is available.
+
 ## [1.0.14-nullsafety.0]
 
 - First attempt at moving to nullsafety. Cheers to @Sameerkash for spearheading the effort.
