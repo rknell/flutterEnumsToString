@@ -1,4 +1,4 @@
-## [2.0.0]
+## [2.0.1]
 
 - No reason not to be bumped to prod with null safety
 
