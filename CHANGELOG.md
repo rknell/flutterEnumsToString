@@ -1,3 +1,7 @@
+## [2.0.0]
+
+- No reason not to be bumped to prod with null safety
+
 ## [2.0.0-nullsafety.1]
 
 - Big version bump to try and get pub's outdated check to recognise a null safe version is available.
