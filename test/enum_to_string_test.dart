@@ -11,7 +11,6 @@ void main() {
     expect(EnumToString.convertToString(TestEnum.testValue3), 'testValue3');
     expect(EnumToString.convertToString(OtherEnumForTesting.helloImAnEnumValue),
         'helloImAnEnumValue');
-    expect(EnumToString.convertToString(null), null);
   });
 
   test('it should also convert enums to string', () {
@@ -25,7 +24,6 @@ void main() {
         EnumToString.convertToString(OtherEnumForTesting.helloImAnEnumValue,
             camelCase: false),
         'helloImAnEnumValue');
-    expect(EnumToString.convertToString(null, camelCase: false), null);
   });
 
   test('it should also convert camelCase enums to words', () {
@@ -39,21 +37,24 @@ void main() {
         EnumToString.convertToString(OtherEnumForTesting.helloImAnEnumValue,
             camelCase: true),
         'Hello im an enum value');
-    expect(EnumToString.convertToString(null, camelCase: true), null);
   });
 
   test('it should convert camelCase enums to words', () {
     // ignore: deprecated_member_use_from_same_package
-    expect(EnumToString.parseCamelCase(TestEnum.valueOne), 'Value one');
+    expect(EnumToString.convertToString(TestEnum.valueOne, camelCase: true),
+        'Value one');
     // ignore: deprecated_member_use_from_same_package
-    expect(EnumToString.parseCamelCase(TestEnum.Value2), 'Value 2');
+    expect(EnumToString.convertToString(TestEnum.Value2, camelCase: true),
+        'Value 2');
     // ignore: deprecated_member_use_from_same_package
-    expect(EnumToString.parseCamelCase(TestEnum.testValue3), 'Test value 3');
+    expect(EnumToString.convertToString(TestEnum.testValue3, camelCase: true),
+        'Test value 3');
     // ignore: deprecated_member_use_from_same_package
-    expect(EnumToString.parseCamelCase(OtherEnumForTesting.helloImAnEnumValue),
+    expect(
+        EnumToString.convertToString(OtherEnumForTesting.helloImAnEnumValue,
+            camelCase: true),
         'Hello im an enum value');
     // ignore: deprecated_member_use_from_same_package
-    expect(EnumToString.parseCamelCase(null), null);
   });
 
   test(
@@ -69,7 +70,6 @@ void main() {
         EnumToString.convertToString(OtherEnumForTesting.helloImAnEnumValue,
             camelCase: true),
         'Hello im an enum value');
-    expect(EnumToString.convertToString(null), null);
   });
 
   test('it should convert a string to an enum', () {
@@ -113,21 +113,18 @@ void main() {
   test('it should convert enum to string list', () {
     expect(EnumToString.toList(TestEnum.values)[0], 'valueOne');
     expect(EnumToString.toList(TestEnum.values)[1], 'Value2');
-    expect(EnumToString.toList(null), null);
   });
 
   test('it should also convert enum to string list', () {
     expect(
         EnumToString.toList(TestEnum.values, camelCase: false)[0], 'valueOne');
     expect(EnumToString.toList(TestEnum.values, camelCase: false)[1], 'Value2');
-    expect(EnumToString.toList(null, camelCase: false), null);
   });
 
   test('it should convert enum to string list in camelCase', () {
     expect(
         EnumToString.toList(TestEnum.values, camelCase: true)[0], 'Value one');
     expect(EnumToString.toList(TestEnum.values, camelCase: true)[1], 'Value 2');
-    expect(EnumToString.toList(null, camelCase: true), null);
   });
 
   test('it should throw proper exception', () {

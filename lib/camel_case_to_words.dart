@@ -50,7 +50,7 @@ String camelCaseToWords(String subject,
     return '';
   }
 
-  RegExp pattern;
+  late RegExp pattern;
 
   if (customPattern is String) {
     pattern = RegExp(customPattern);
@@ -60,10 +60,10 @@ String camelCaseToWords(String subject,
 
   final words = pattern.allMatches(subject).map((m) => m.group(0)).toList();
 
-  words[0] = words[0][0].toUpperCase() + words[0].substring(1);
+  words[0] = words[0]![0].toUpperCase() + words[0]!.substring(1);
 
   for (var i = 1; i < words.length; i++) {
-    words[i] = words[i].toLowerCase();
+    words[i] = words[i]!.toLowerCase();
   }
 
   return words.join(' ');

@@ -1,3 +1,15 @@
+## [2.0.0]
+
+- No reason not to be bumped to prod with null safety
+
+## [2.0.0-nullsafety.1]
+
+- Big version bump to try and get pub's outdated check to recognise a null safe version is available.
+
+## [1.0.14-nullsafety.0]
+
+- First attempt at moving to nullsafety. Cheers to @Sameerkash for spearheading the effort.
+
 ## [1.0.14] - 2020-11-20
 
 - Added camelCase flag in "fromString" function to properly handle conversion back of a string with spaces to enum

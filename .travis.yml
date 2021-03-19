@@ -1,6 +1,6 @@
 language: dart
 dart:
-  - stable
+  - beta
 dart_task:
   - test: --platform vm
   - dartanalyzer: --fatal-infos .
