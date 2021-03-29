@@ -4,7 +4,7 @@
 
 Better conversion of ENUMs to string - It also can handle converting back again!
 
-### Shameless plug
+### :fire::fire::fire: Shameless plug! :fire::fire::fire:
 Want to write server applications like expressjs in dart? Check out my new open source package Alfred
 https://pub.dev/packages/alfred
 
