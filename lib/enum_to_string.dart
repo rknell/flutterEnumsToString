@@ -2,6 +2,8 @@ library enum_to_string;
 
 import 'camel_case_to_words.dart';
 
+export 'enum_json_parser.dart';
+
 class EnumToString {
   static bool _isEnumItem(enumItem) {
     final split_enum = enumItem.toString().split('.');

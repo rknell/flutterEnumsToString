@@ -145,4 +145,33 @@ void main() {
         EnumToString.fromString(TestEnum.values, 'Value One', camelCase: true);
     expect(result, TestEnum.valueOne);
   });
+
+  group('enum_json_parser tests:', () {
+    final json = {
+      'val1': 0,
+      'val2': TestEnum.values.length,
+      'val3': -1,
+      'val4': null,
+    };
+    test('it should parse from json successfully', () {
+      final result =
+          EnumJsonParser.parse<TestEnum>(TestEnum.values, json['val1']);
+      expect(result, TestEnum.valueOne);
+    });
+    test('it should return null because the input is out of bounds', () {
+      final result1 =
+          EnumJsonParser.parse<TestEnum>(TestEnum.values, json['val2']);
+      final result2 =
+          EnumJsonParser.parse<TestEnum>(TestEnum.values, json['val3']);
+
+      expect(result1, null);
+      expect(result2, null);
+    });
+    test('it should return null because the input is null', () {
+      final result =
+          EnumJsonParser.parse<TestEnum>(TestEnum.values, json['val4']);
+
+      expect(result, null);
+    });
+  });
 }
