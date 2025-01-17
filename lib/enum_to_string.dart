@@ -4,9 +4,9 @@ import 'camel_case_to_words.dart';
 
 class EnumToString {
   static bool _isEnumItem(enumItem) {
-    final split_enum = enumItem.toString().split('.');
-    return split_enum.length > 1 &&
-        split_enum[0] == enumItem.runtimeType.toString();
+    final splitEnum = enumItem.toString().split('.');
+    return splitEnum.length > 1 &&
+        splitEnum[0] == enumItem.runtimeType.toString();
   }
 
   /// Convert an enum to a string
@@ -20,8 +20,8 @@ class EnumToString {
     assert(enumItem != null);
     assert(_isEnumItem(enumItem),
         '$enumItem of type ${enumItem.runtimeType.toString()} is not an enum item');
-    final _tmp = enumItem.toString().split('.')[1];
-    return !camelCase ? _tmp : camelCaseToWords(_tmp);
+    final tmp = enumItem.toString().split('.')[1];
+    return !camelCase ? tmp : camelCaseToWords(tmp);
   }
 
   @Deprecated(
@@ -76,7 +76,7 @@ class EnumToString {
   /// Bulk convert enum values to a list
   ///
   static List<String> toList<T>(List<T> enumValues, {bool camelCase = false}) {
-    final _enumList = enumValues
+    final enumList = enumValues
         .map((t) => !camelCase
             ? EnumToString.convertToString(t)
             : EnumToString.convertToString(t, camelCase: true))
@@ -86,7 +86,7 @@ class EnumToString {
     // non-nullable one, but this will do until I find out how. Happy if
     // someone want to do a PR in the meantime to correct this.
     var output = <String>[];
-    for (var value in _enumList) {
+    for (var value in enumList) {
       output.add(value);
     }
     return output;
