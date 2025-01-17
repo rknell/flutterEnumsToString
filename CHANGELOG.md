@@ -1,3 +1,9 @@
+## [2.1.0] - 2025-01-17
+
+- Added new `capitalizeWords` flag to control word capitalization in camelCase conversion
+- When used with `camelCase: true`, setting `capitalizeWords: true` will capitalize all words instead of just the first one
+- Maintains backward compatibility with existing behavior
+
 ## [2.0.1]
 
 - No reason not to be bumped to prod with null safety

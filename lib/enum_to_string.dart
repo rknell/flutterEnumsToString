@@ -16,12 +16,19 @@ class EnumToString {
   ///
   /// If you pass in the option [camelCase]=true it will convert it to words
   /// So TestEnum.valueOne will become Value One
-  static String convertToString(dynamic enumItem, {bool camelCase = false}) {
+  ///
+  /// If you pass in the option [capitalizeWords]=true along with [camelCase]=true,
+  /// it will capitalize each word. So TestEnum.valueOne will become "Value One"
+  /// instead of "Value one"
+  static String convertToString(dynamic enumItem,
+      {bool camelCase = false, bool capitalizeWords = false}) {
     assert(enumItem != null);
     assert(_isEnumItem(enumItem),
         '$enumItem of type ${enumItem.runtimeType.toString()} is not an enum item');
     final tmp = enumItem.toString().split('.')[1];
-    return !camelCase ? tmp : camelCaseToWords(tmp);
+    return !camelCase
+        ? tmp
+        : camelCaseToWords(tmp, defaultPattern, capitalizeWords);
   }
 
   @Deprecated(
@@ -75,11 +82,13 @@ class EnumToString {
 
   /// Bulk convert enum values to a list
   ///
-  static List<String> toList<T>(List<T> enumValues, {bool camelCase = false}) {
+  static List<String> toList<T>(List<T> enumValues,
+      {bool camelCase = false, bool capitalizeWords = false}) {
     final enumList = enumValues
         .map((t) => !camelCase
             ? EnumToString.convertToString(t)
-            : EnumToString.convertToString(t, camelCase: true))
+            : EnumToString.convertToString(t,
+                camelCase: true, capitalizeWords: capitalizeWords))
         .toList();
 
     // I am sure there is a better way to convert a nullable list to a

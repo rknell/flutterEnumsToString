@@ -1,7 +1,0 @@
-language: dart
-dart:
-  - beta
-dart_task:
-  - test: --platform vm
-  - dartanalyzer: --fatal-infos .
-  - dartfmt: true
