@@ -1,7 +1,7 @@
 # enum_to_string
 
 [![CI](https://github.com/rknell/flutterEnumsToString/actions/workflows/ci.yml/badge.svg)](https://github.com/rknell/flutterEnumsToString/actions)
-[![codecov](https://codecov.io/gh/rknell/flutterEnumsToString/branch/main/graph/badge.svg)](https://codecov.io/gh/rknell/flutterEnumsToString)
+[![codecov](https://codecov.io/gh/rknell/flutterEnumsToString/branch/master/graph/badge.svg)](https://codecov.io/gh/rknell/flutterEnumsToString)
 
 Better conversion of ENUMs to string - It also can handle converting back again!
 
