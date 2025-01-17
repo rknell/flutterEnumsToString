@@ -1,5 +1,6 @@
 import 'package:enum_to_string/enum_to_string.dart';
 
+// ignore: constant_identifier_names
 enum TestEnum { ValueOne, Value2, valueThree }
 
 void main() {
