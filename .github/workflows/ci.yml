@@ -9,12 +9,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        sdk: ['2.12.0', '2.19.6', 'stable']  # Min supported, an LTS version, and latest stable
+      fail-fast: false
 
     steps:
       - uses: actions/checkout@v3
       
       - name: Setup Dart
         uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ matrix.sdk }}
         
       - name: Install dependencies
         run: dart pub get
@@ -29,11 +35,13 @@ jobs:
         run: |
           dart pub global activate coverage
           dart test --coverage=coverage
-          dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
+          dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --report-on=lib
           
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: coverage/lcov.info
-          fail_ci_if_error: true 
+          fail_ci_if_error: true
+        # Only upload coverage from the latest stable SDK
+        if: matrix.sdk == 'stable' 

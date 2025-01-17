@@ -17,6 +17,6 @@ dart analyze
 echo "\n🧪 Running tests with coverage..."
 dart pub global activate coverage
 dart test --coverage=coverage
-dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
+dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --report-on=lib
 
 echo "\n✅ All checks passed!" 
