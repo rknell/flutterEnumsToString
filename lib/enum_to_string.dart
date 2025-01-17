@@ -9,10 +9,23 @@ class EnumToString {
         splitEnum[0] == enumItem.runtimeType.toString();
   }
 
+  /// Check if the enum has a custom string mapping
+  static String? _getCustomMapping(dynamic enumItem) {
+    try {
+      // Access the value property if it exists
+      final value = (enumItem as dynamic).value as String?;
+      return value;
+    } catch (_) {
+      return null;
+    }
+  }
+
   /// Convert an enum to a string
   ///
   /// Pass in the enum value, so TestEnum.valueOne into [enumItem]
-  /// It will return the striped off value so "valueOne".
+  /// It will first check if the enum has a custom string mapping (using enhanced enums).
+  /// If it does, that value will be returned.
+  /// Otherwise, it will return the striped off value so "valueOne".
   ///
   /// If you pass in the option [camelCase]=true it will convert it to words
   /// So TestEnum.valueOne will become Value One
@@ -25,6 +38,14 @@ class EnumToString {
     assert(enumItem != null);
     assert(_isEnumItem(enumItem),
         '$enumItem of type ${enumItem.runtimeType.toString()} is not an enum item');
+
+    // First check for custom mapping
+    final customMapping = _getCustomMapping(enumItem);
+    if (customMapping != null) {
+      return customMapping;
+    }
+
+    // Fall back to original behavior
     final tmp = enumItem.toString().split('.')[1];
     return !camelCase
         ? tmp

@@ -1,3 +1,9 @@
+## 2.2.0
+
+* Added support for enhanced enums (Dart 2.17+)
+* Added ability to use custom string mappings with enhanced enums
+* Minimum SDK version increased to 2.17.0
+
 ## [2.1.0] - 2025-01-17
 
 - Added new `capitalizeWords` flag to control word capitalization in camelCase conversion

@@ -7,6 +7,15 @@ enum TestEnum { valueOne, Value2, testValue3, multiWordValueTest }
 
 enum OtherEnumForTesting { helloImAnEnumValue }
 
+enum EnhancedTestEnum {
+  mapped("Custom-String"),
+  camelCaseValue,
+  withCapitals;
+
+  final String? value;
+  const EnhancedTestEnum([this.value]);
+}
+
 void main() {
   test('it should convert enums to string', () {
     expect(EnumToString.convertToString(TestEnum.valueOne), 'valueOne');
@@ -220,5 +229,35 @@ void main() {
     expect(EnumToString.parse(TestEnum.valueOne), 'valueOne');
     // ignore: deprecated_member_use_from_same_package
     expect(EnumToString.parseCamelCase(TestEnum.valueOne), 'Value one');
+  });
+
+  group('Enhanced enum support', () {
+    test('should use custom string mapping when available', () {
+      expect(EnumToString.convertToString(EnhancedTestEnum.mapped),
+          equals("Custom-String"));
+    });
+
+    test('should fall back to normal behavior for unmapped values', () {
+      expect(
+          EnumToString.convertToString(EnhancedTestEnum.camelCaseValue,
+              camelCase: true),
+          equals("Camel case value"));
+      expect(
+          EnumToString.convertToString(EnhancedTestEnum.camelCaseValue,
+              camelCase: true, capitalizeWords: true),
+          equals("Camel Case Value"));
+    });
+
+    test('fromString should work with both mapped and unmapped values', () {
+      expect(EnumToString.fromString(EnhancedTestEnum.values, "Custom-String"),
+          equals(EnhancedTestEnum.mapped));
+      expect(EnumToString.fromString(EnhancedTestEnum.values, "camelCaseValue"),
+          equals(EnhancedTestEnum.camelCaseValue));
+    });
+
+    test('toList should handle mixed mapped and unmapped values', () {
+      expect(EnumToString.toList(EnhancedTestEnum.values),
+          equals(["Custom-String", "camelCaseValue", "withCapitals"]));
+    });
   });
 }

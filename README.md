@@ -90,3 +90,35 @@ dart test
 ```
 
 The CI pipeline requires all tests to pass. Please ensure your changes include appropriate test coverage.
+
+## Enhanced Enum Support (Dart 2.17+)
+
+Starting from version 2.2.0, this package supports Dart's enhanced enums with custom string mappings. This is particularly useful when you need enum string representations that can't be valid Dart identifiers.
+
+```dart
+enum Rating {
+  G,
+  PG13('PG-13'),  // Custom mapping with hyphen
+  R,
+  unrated;        // Falls back to normal EnumToString behavior
+
+  final String? value;
+  const Rating([this.value]);
+}
+
+void main() {
+  // Custom mapped values use their explicit mapping
+  print(EnumToString.convertToString(Rating.PG13));  // Prints: PG-13
+  
+  // Unmapped values use normal EnumToString behavior
+  print(EnumToString.convertToString(Rating.unrated));  // Prints: unrated
+  
+  // All other EnumToString features work as expected
+  print(EnumToString.fromString(Rating.values, 'PG-13') == Rating.PG13);  // true
+  print(EnumToString.toList(Rating.values));  // ['G', 'PG-13', 'R', 'unrated']
+}
+
+This feature is particularly useful when:
+- You need special characters in your enum strings (like hyphens or spaces)
+- Your enum strings need to match an external API or format exactly
+- You want some enum values to have custom string representations while others use the default behavior
