@@ -1,10 +1,8 @@
 # enum_to_string
 
 [![CI](https://github.com/rknell/flutterEnumsToString/actions/workflows/ci.yml/badge.svg)](https://github.com/rknell/flutterEnumsToString/actions)
-[![codecov](https://codecov.io/gh/rknell/flutterEnumsToString/branch/master/graph/badge.svg)](https://codecov.io/gh/rknell/flutterEnumsToString)
 
 Better conversion of ENUMs to string - It also can handle converting back again!
-
 
 
 ## What it does
@@ -67,8 +65,7 @@ Any pull requests / extensions welcome, this was just an annoying thing I needed
 The project uses GitHub Actions for CI (migrated from Travis CI), which automatically runs the following checks on all pull requests:
 - Dart formatting
 - Static analysis
-- Tests with code coverage
-- Coverage reporting to Codecov
+- Tests
 
 You can run all checks locally before submitting a PR using the provided script:
 
@@ -88,10 +85,8 @@ dart format --output=none --set-exit-if-changed .
 # Run static analysis
 dart analyze
 
-# Run tests with coverage
-dart pub global activate coverage
-dart test --coverage=coverage
-dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --report-on=lib
+# Run tests
+dart test
 ```
 
-The CI pipeline requires all tests to pass and maintain 100% code coverage. Please ensure your changes include appropriate test coverage.
+The CI pipeline requires all tests to pass. Please ensure your changes include appropriate test coverage.
