@@ -1,11 +1,11 @@
 name: enum_to_string
 description: Better conversion of ENUMs to string. Dart has annoying EnumName.ValueName syntax when calling enum.toString, this package fixes that.
-version: 2.0.1
+version: 2.1.0
 homepage: https://github.com/rknell/flutterEnumsToString
 
 environment:
   sdk: '>=2.12.0 <4.0.0'
 
 dev_dependencies:
-  test:
-  lints: ^2.1.1
+  test: ^1.24.0
+  lints: ^5.1.1

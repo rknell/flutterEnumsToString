@@ -4,9 +4,7 @@
 
 Better conversion of ENUMs to string - It also can handle converting back again!
 
-### :fire::fire::fire: Shameless plug! :fire::fire::fire:
-Want to write server applications like expressjs in dart? Check out my new open source package Alfred
-https://pub.dev/packages/alfred
+
 
 ## What it does
 
@@ -21,7 +19,11 @@ and converts it to
 **Also handles camel case**
 
 Input `enum TestEnum { testValue1 }`
-Output `Test Value 1`
+Output `Test value 1`
+
+You can also capitalize all words using the `capitalizeWords` flag:
+Input `enum TestEnum { testValue1 }`
+Output with `capitalizeWords: true`: `Test Value 1`
 
 ## Usage
 
@@ -35,6 +37,9 @@ convert(){
     //result = 'testValue1'
 
     String result = EnumToString.convertToString(TestEnum.testValue1, camelCase: true);
+    //result = 'Test value 1'
+
+    String result = EnumToString.convertToString(TestEnum.testValue1, camelCase: true, capitalizeWords: true);
     //result = 'Test Value 1'
 
     EnumToString.fromString(TestEnum.values, "testValue1"); //Enum
@@ -47,7 +52,7 @@ convert(){
     //result = ['testValue1','testValue2'],
 
     List<String> result = EnumToString.toList(TestEnum.values, camelCase: true);
-    //result = ['Test Value 1','Test Value 2'],
+    //result = ['Test value 1','Test value 2'],
     
     List result = EnumToString.fromList(TestEnum.values, ["ValueOne", "Value2"]); //List<Enum>
     //result = [TestEnum.valueOne, TestEnum.value2];
