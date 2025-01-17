@@ -1,6 +1,7 @@
 # enum_to_string
 
-[![Build Status](https://travis-ci.org/rknell/flutterEnumsToString.svg?branch=master)](https://travis-ci.org/rknell/flutterEnumsToString)
+[![CI](https://github.com/rknell/flutterEnumsToString/actions/workflows/ci.yml/badge.svg)](https://github.com/rknell/flutterEnumsToString/actions)
+[![codecov](https://codecov.io/gh/rknell/flutterEnumsToString/branch/main/graph/badge.svg)](https://codecov.io/gh/rknell/flutterEnumsToString)
 
 Better conversion of ENUMs to string - It also can handle converting back again!
 
@@ -63,12 +64,34 @@ convert(){
 
 Any pull requests / extensions welcome, this was just an annoying thing I needed to fix a couple of times so viola! a package was born.
 
-It is worth noting that for consistency purposes there are a number of linting checks that need to pass to move through the CI pipeline and make sure merging goes smoothly.
+The project uses GitHub Actions for CI (migrated from Travis CI), which automatically runs the following checks on all pull requests:
+- Dart formatting
+- Static analysis
+- Tests with code coverage
+- Coverage reporting to Codecov
 
-You can test / fix any issues that will prevent the pull request being accepted by running the following commands (this is an example of the macOS cli):
+You can run all checks locally before submitting a PR using the provided script:
 
+```bash
+./tool/check.sh
 ```
-pub run test --platform vm
-dartanalyzer --fatal-infos .
-dartfmt -w lib test example
+
+Or run them individually:
+
+```bash
+# Get dependencies
+dart pub get
+
+# Format code
+dart format --output=none --set-exit-if-changed .
+
+# Run static analysis
+dart analyze
+
+# Run tests with coverage
+dart pub global activate coverage
+dart test --coverage=coverage
+dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
 ```
+
+The CI pipeline requires all tests to pass and maintain 100% code coverage. Please ensure your changes include appropriate test coverage.

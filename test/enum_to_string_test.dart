@@ -1,4 +1,5 @@
 import 'package:enum_to_string/enum_to_string.dart';
+import 'package:enum_to_string/camel_case_to_words.dart';
 import 'package:test/test.dart';
 
 // ignore: constant_identifier_names
@@ -193,5 +194,31 @@ void main() {
         EnumToString.toList(TestEnum.values,
             camelCase: true, capitalizeWords: false),
         ['Value one', 'Value 2', 'Test value 3', 'Multi word value test']);
+  });
+
+  test('it should handle empty strings in camelCaseToWords', () {
+    expect(camelCaseToWords(''), '');
+    expect(camelCaseToWords('', defaultPattern, true), '');
+  });
+
+  test('it should handle RegExp pattern in camelCaseToWords', () {
+    final regExpPattern = RegExp(r'[A-Z][a-z]+|[a-z]+|[0-9]+');
+    expect(camelCaseToWords('testString', regExpPattern), 'Test string');
+  });
+
+  test('it should handle null values in assertions', () {
+    expect(() => EnumToString.convertToString(null),
+        throwsA(isA<AssertionError>()));
+  });
+
+  test('it should return -1 for indexOf when value is not found', () {
+    expect(EnumToString.indexOf(TestEnum.values, 'nonexistentValue'), -1);
+  });
+
+  test('it should handle deprecated parse methods correctly', () {
+    // ignore: deprecated_member_use_from_same_package
+    expect(EnumToString.parse(TestEnum.valueOne), 'valueOne');
+    // ignore: deprecated_member_use_from_same_package
+    expect(EnumToString.parseCamelCase(TestEnum.valueOne), 'Value one');
   });
 }
