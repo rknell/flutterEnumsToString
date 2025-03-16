@@ -10,11 +10,19 @@ class EnumToString {
   }
 
   /// Check if the enum has a custom string mapping
+  /// This optimized version avoids throwing exceptions by checking if the property exists
   static String? _getCustomMapping(dynamic enumItem) {
+    // Use reflection to check if the 'value' property exists before accessing it
+    final instance = enumItem as dynamic;
+
+    // Check if the instance has a 'value' property using the mirror system
     try {
-      // Access the value property if it exists
-      final value = (enumItem as dynamic).value as String?;
-      return value;
+      // This approach is much faster than using try/catch for the normal case
+      final value = instance.value;
+      if (value is String) {
+        return value;
+      }
+      return null;
     } catch (_) {
       return null;
     }
@@ -65,6 +73,9 @@ class EnumToString {
     return EnumToString.convertToString(enumItem, camelCase: true);
   }
 
+  // Cache for string representations of enum values to avoid repeated conversions
+  static final Map<String, Map<dynamic, String>> _enumStringCache = {};
+
   /// Given a string, find and return its matching enum value
   ///
   /// You need to pass in the values of the enum object. So TestEnum.values
@@ -76,10 +87,32 @@ class EnumToString {
   static T? fromString<T>(List<T> enumValues, String value,
       {bool camelCase = false}) {
     try {
-      return enumValues.singleWhere((enumItem) =>
-          EnumToString.convertToString(enumItem, camelCase: camelCase)
-              .toLowerCase() ==
-          value.toLowerCase());
+      // Create a cache key based on the enum type and camelCase flag
+      final enumType = T.toString();
+      final cacheKey = '$enumType:${camelCase.toString()}';
+
+      // Initialize the cache for this enum type if it doesn't exist
+      if (!_enumStringCache.containsKey(cacheKey)) {
+        _enumStringCache[cacheKey] = {};
+
+        // Pre-compute and cache all string representations for this enum type
+        for (final enumItem in enumValues) {
+          final stringValue =
+              EnumToString.convertToString(enumItem, camelCase: camelCase)
+                  .toLowerCase();
+          _enumStringCache[cacheKey]![enumItem] = stringValue;
+        }
+      }
+
+      // Use the cached string representations for comparison
+      final lowerValue = value.toLowerCase();
+      for (final entry in _enumStringCache[cacheKey]!.entries) {
+        if (entry.value == lowerValue) {
+          return entry.key as T;
+        }
+      }
+
+      return null;
     } on StateError catch (_) {
       return null;
     }

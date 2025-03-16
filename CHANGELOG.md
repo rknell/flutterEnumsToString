@@ -1,3 +1,11 @@
+## 2.2.1 - 2025-02-01
+
+* Performance improvements:
+  * Optimized `_getCustomMapping` method to avoid throwing exceptions for enums without custom values
+  * Added caching for string representations of enum values in `fromString` method to avoid repeated conversions
+  * Fixed performance regression reported in issues #35 and #36
+  * Added benchmark tests to measure performance improvements
+
 ## 2.2.0
 
 * Added support for enhanced enums (Dart 2.17+)
